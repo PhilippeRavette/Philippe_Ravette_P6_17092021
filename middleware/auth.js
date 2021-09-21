@@ -1,17 +1,21 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+//Récupération du plugin jsonwebtoken
+const jwt = require("jsonwebtoken") //require("dotenv").config();
 
+//Vérification du TOKEN utilisateur
 module.exports = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-        const userId = decodedToken.userId;
-        if (req.body.userId && req.body.userId !== userId) {
-            throw 'User ID non valable';
-        } else {
-            next();
-        }
+        const token = req.headers.authorization.split(" ")[1]
+        console.log("auth")
+        console.log("token = ", token)
+        const decodedToken = jwt.verify(token, 'RANDOM_SECRET_TOKEN')
+        const userId = decodedToken.userId
+        console.log("userID = ", userId)
+
+        if (req.body.userId && req.body.userId !== userId) throw "Invalid user ID"
+        next()
     } catch (error) {
-        res.status(401).json({ error: error | 'Requête non authentifiée' });
+        res.status(401).json({
+            error: new Error("Invalid request"),
+        })
     }
 };

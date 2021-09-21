@@ -1,8 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const userCtrl = require('../controllers/user');
+//Import d'express
+const express = require('express')
 
-router.post('/signup', userCtrl.signup);
-router.post('/login', userCtrl.login);
+//Création d'un router avec express
+const router = express.Router()
 
-module.exports = router;
+//Import du contrôleur
+const userController = require('../controllers/user')
+
+const verifyPassword = require('../middleware/verifyPassword')
+
+//Création des routes inscrition et connection
+router.post('/signup', verifyPassword, userController.signup)
+
+router.post('/login', userController.login)
+
+module.exports = router

@@ -1,6 +1,8 @@
-const http = require('http');
-const app = require('./app');
+//Ecoute ds requêtes http et réponse
+const http = require('http'); //Import du package htpp
+const app = require('./app'); //Import de app pour l'utlisation de l'application sur le serveur
 
+//Fonction normalizePort renvoie un port valide cela configure le port de connection en fonction de l'environnement
 const normalizePort = val => {
     const port = parseInt(val, 10);
 
@@ -12,9 +14,13 @@ const normalizePort = val => {
     }
     return false;
 };
+
+//Ajout du port de connection si celui-ci n'est pas déclaré par l'environnement
+//Si aucun port n'est fourni on écoutera sur le port 3000
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+//La fonction errorHandler recherche les différentes erreurs
 const errorHandler = error => {
     if (error.syscall !== 'listen') {
         throw error;
@@ -35,8 +41,10 @@ const errorHandler = error => {
     }
 };
 
+//Création du serveur avec express qui utilise app
 const server = http.createServer(app);
 
+//Gestion des évenements serveur
 server.on('error', errorHandler);
 server.on('listening', () => {
     const address = server.address();
@@ -44,4 +52,5 @@ server.on('listening', () => {
     console.log('Listening on ' + bind);
 });
 
+//Le serveur écoute le port définit plus haut
 server.listen(port);
