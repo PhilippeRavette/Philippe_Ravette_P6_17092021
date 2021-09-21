@@ -24,9 +24,9 @@ router.delete("/:id", auth, saucesController.deleteSauce)
 router.get("/:id", auth, saucesController.getOneSauce)
 
 //Route qui permet de récupérer toutes les sauces
-router.get("/", auth, saucesController.getAllSauces)
+router.get("/", auth, saucesController.getAllSauce)
 
 //Route qui permet de gérer leslikes des sauces
-router.post("/:id/like", auth, saucesController.likeSauce)
+router.post('/:id/like', auth, saucesController.likeDislike)
 
 module.exports = router

@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
 userSchema.plugin(uniqueValidator)
 
 //Plugin qui purifie les champs du model avant de les enegistrer dans la base MONOGDB
-sauceSchema.plugin(sanitizerPlugin)
+userSchema.plugin(sanitizerPlugin)
 
 //Export du schéma de données pour interagir avec l'application
 module.exports = mongoose.model('User', userSchema)
