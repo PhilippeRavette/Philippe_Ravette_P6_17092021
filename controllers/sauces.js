@@ -7,7 +7,7 @@ const fs = require("fs")
 //Création d'une nouvelle sauce
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce) //On stocke les données envoyées par le frontend
-    delete sauceObjet._id; //Onsupprime l'id généré par le frontend.l'id de la sauce étant créé par MONGODB
+    delete sauceObject._id; //Onsupprime l'id généré par le frontend.l'id de la sauce étant créé par MONGODB
 
     //Création d'une instance de sauce
     const sauce = new Sauce({
@@ -15,8 +15,8 @@ exports.createSauce = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
         likes: 0,
         dislikes: 0,
-        usersLiked: [],
-        usersDisliked: []
+        usersLiked: "",
+        usersDisliked: ""
     })
     sauce.save() //Sauvegarde de la sauce
         .then(() => res.status(201).json({ message: "Sauce enregistrée !" }))

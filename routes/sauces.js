@@ -3,9 +3,9 @@
 const express = require("express")
     //Ajour du routeur
 const router = express.Router()
-    //Import middleware auth pour seécuriser les routes
+    //Import middleware auth pour sécuriser les routes
 const auth = require("../middleware/auth")
-    //Import middleware multer-config pour la gstion des images
+    //Import middleware multer-config pour la gestion des images
 const multer = require("../middleware/multer-config")
     //import du contrôleur 
 const saucesController = require("../controllers/sauces")
@@ -26,7 +26,7 @@ router.get("/:id", auth, saucesController.getOneSauce)
 //Route qui permet de récupérer toutes les sauces
 router.get("/", auth, saucesController.getAllSauce)
 
-//Route qui permet de gérer leslikes des sauces
+//Route qui permet de gérer les likes des sauces
 router.post('/:id/like', auth, saucesController.likeDislike)
 
 module.exports = router
