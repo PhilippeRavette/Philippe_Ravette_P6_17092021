@@ -1,23 +1,19 @@
-//Récupération du plugin jsonwebtoken
-const jwt = require("jsonwebtoken") //require("dotenv").config();
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-//Vérification du TOKEN utilisateur
 module.exports = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(" ")[1]
-        console.log("auth")
-        console.log("token = ", token)
-        const decodedToken = jwt.verify(token, 'RANDOM_SECRET_TOKEN')
-        const userId = decodedToken.userId
-        console.log("userID = ", userId)
-        if (req.body.userId && req.body.userId) {
-            throw 'Invalid user ID';
+        const token = req.headers.authorization.split(" ")[1]; //On extrait le token de la requête
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN); //On décrypte le token grâce à la clé secrète
+        const userId = decodedToken.userId; //On récupère l'userId du token décrypté
+        if (req.body.userId && req.body.userId !== userId) {
+            throw "Invalid user ID"; //Renvoie une erreur si l'id décodé de la requête ne correspond pas l'id de l'utilisateur
         } else {
-            next();
+            next(); //Sinon, l'authentification est réussie et la suite du code peut s'exécuter
         }
-    } catch (error) {
+    } catch (err) {
         res.status(401).json({
-            error: new Error("Invalid request"),
-        })
+            error: new Error("Unauthorized request!"),
+        });
     }
 };

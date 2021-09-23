@@ -1,9 +1,8 @@
-//Ecoute ds requêtes http et réponse
-const http = require('http'); //Import du package htpp
-const app = require('./app'); //Import de app pour l'utlisation de l'application sur le serveur
+const http = require("http"); // Permet d'utiliser le serveur http
+const app = require("./app");
 
-//Fonction normalizePort renvoie un port valide cela configure le port de connection en fonction de l'environnement
-const normalizePort = val => {
+//Permet de retourner un port valide, qu'il soit obtenu sous la forme d'un nombre ou d'une chaine de caractères
+const normalizePort = (val) => {
     const port = parseInt(val, 10);
 
     if (isNaN(port)) {
@@ -14,26 +13,24 @@ const normalizePort = val => {
     }
     return false;
 };
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
 
-//Ajout du port de connection si celui-ci n'est pas déclaré par l'environnement
-//Si aucun port n'est fourni on écoutera sur le port 3000
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-//La fonction errorHandler recherche les différentes erreurs
-const errorHandler = error => {
-    if (error.syscall !== 'listen') {
+//Permet de renvoyer les erreurs afin de les traiter
+const errorHandler = (error) => {
+    if (error.syscall !== "listen") {
         throw error;
     }
     const address = server.address();
-    const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
+    const bind =
+        typeof address === "string" ? "pipe " + address : "port: " + port;
     switch (error.code) {
-        case 'EACCES':
-            console.error(bind + ' requires elevated privileges.');
+        case "EACCES":
+            console.error(bind + " requires elevated privileges.");
             process.exit(1);
             break;
-        case 'EADDRINUSE':
-            console.error(bind + ' is already in use.');
+        case "EADDRINUSE":
+            console.error(bind + " is already in use.");
             process.exit(1);
             break;
         default:
@@ -41,16 +38,13 @@ const errorHandler = error => {
     }
 };
 
-//Création du serveur avec express qui utilise app
-const server = http.createServer(app);
+const server = http.createServer(app); //Construit le serveur avec le protocole http et en utilisant app.js
 
-//Gestion des évenements serveur
-server.on('error', errorHandler);
-server.on('listening', () => {
+server.on("error", errorHandler); //Lance le gestionnaire d'erreurs
+server.on("listening", () => { //Lance le serveur et affiche les infos de connexion dans la console
     const address = server.address();
-    const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
-    console.log('Listening on ' + bind);
+    const bind = typeof address === "string" ? "pipe " + address : "port " + port;
+    console.log("Listening on " + bind);
 });
 
-//Le serveur écoute le port définit plus haut
 server.listen(port);

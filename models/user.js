@@ -1,35 +1,18 @@
-//Import mongoose
-const mongoose = require('mongoose')
-require('mongoose-type-email')
+const mongoose = require('mongoose');
 
-//Plugin qui valide l'unicité de l'email afin que deux utilisateurs ne partage pas le même email
-const uniqueValidator = require('mongoose-unique-validator')
+//Permet de vérifier que le champ avec la propriété unique n'est pas déjà présent dans la base de données
+const uniqueValidator = require('mongoose-unique-validator');
 
-const sanitizerPlugin = require('mongoose-sanitizer-plugin')
 
-//Le mot de passe feras l'objet d'une validation particulière grâce au middleware verifPassword
-//Création du schéma de données dédoée aà l'utilisateurs
 
+//Création d'un schéma de données grâce à Mongoose avec les propriétés désirées
 const userSchema = mongoose.Schema({
-    // L'email doit être unique
-    email: {
-        type: String,
-        unique: true,
-        required: [true, "Veuillez entrer votre adresse email"],
-        match: [/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, "Veuillez entrer une adresse email correcte"]
-    },
-    // enregistrement du mot de passe
-    password: {
-        type: String,
-        required: [true, "Veuillez choisir un mot de passe"]
-    }
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
 });
 
-//Application du plugin au schéma garantissant l'unicité.
-userSchema.plugin(uniqueValidator)
+//Application d'un uniqueValidator au schema
+userSchema.plugin(uniqueValidator);
 
-//Plugin qui purifie les champs du model avant de les enegistrer dans la base MONOGDB
-userSchema.plugin(sanitizerPlugin)
-
-//Export du schéma de données pour interagir avec l'application
-module.exports = mongoose.model('User', userSchema)
+//Exportation du schema en tant que modèle
+module.exports = mongoose.model('User', userSchema);

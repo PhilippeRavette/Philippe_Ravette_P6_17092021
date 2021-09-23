@@ -1,24 +1,24 @@
-//Récupération du plugin multer qui permet de gérer les fichiers entrants
 const multer = require('multer');
 
-//Dictionnare pour définir les formats d'images
+//Indique comment nous voulons écrire les types de médias
 const MIME_TYPES = {
-    'image/jpg': 'jpg',
-    'image/jpeg': 'jpg',
-    'image/png': 'png'
+    "image/jpg": "jpg",
+    "image/jpeg": "jpg",
+    "image/png": "png",
 };
 
-//On crée un objet e configuration pour préciser ou stocker les images à multer
+//Utilisation d'une méthode de multer pour enregistrer les nouvelles images dans le dossier images
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, 'images')
+        callback(null, 'images');
     },
+
     filename: (req, file, callback) => {
-        var name = file.originalname.split(' ').join('_')
-        const extension = MIME_TYPES[file.mimetype]
-        name = name.replace("." + extension, "_")
-        callback(null, name + Date.now() + '.' + extension)
-    }
+        //Création d'un nom unique pour la nouvelle image
+        const name = file.originalname.split(".").join('_').split(".")[0];
+        const extension = MIME_TYPES[file.mimetype];
+        callback(null, name + Date.now() + "." + extension);
+    },
 });
 
-module.exports = multer({ storage: storage }).single('image')
+module.exports = multer({ storage: storage }).single("image");

@@ -1,17 +1,16 @@
-//Import d'express
-const express = require('express')
+const express = require("express");
+const router = express.Router(); //Permet de charger le middleware au niveau du routeur
+const userCtrl = require("../controllers/user"); //Appel de la logique métier de nos routes
+const authentificationLimiter = require("../middleware/authentificationLimiter"); //Appel du middleware authenticationLimiter
 
-//Création d'un router avec express
-const router = express.Router()
+const rateLimit = require("express-rate-limit");
+const rateLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 5, //
+    message: " Trop de tentatives échouées, réessayez dans 5 minutes",
+});
 
-//Import du contrôleur
-const userController = require('../controllers/user')
+router.post("/signup", userCtrl.signup); //Création d'un nouvel utilisateur
+router.post("/login", authentificationLimiter, userCtrl.login); //Login d'un utilisateur existant
 
-const verifyPassword = require('../middleware/verifyPassword')
-
-//Création des routes inscrition et connection
-router.post('/signup', verifyPassword, userController.signup)
-
-router.post('/login', userController.login)
-
-module.exports = router
+module.exports = router;
