@@ -10,6 +10,9 @@ Compétences évaluées :
     Stocker des données de manière sécurisée
     Mettre en œuvre des opérations CRUD de manière sécurisée
 
+  
+* Voir : [Le projet sur OpenClassrooms](https://openclassrooms.com/fr/projects/676/assignment "Cliquez pour voir le projet")
+
 Développement
 
 La partie frontend du projet était déjà existante et a été développée avec Angular CLI version 7.0.2
@@ -24,7 +27,7 @@ Côté backend, plusieurs dépendances npm ont été nécessaires : Mongoose - B
 Côté frontend, CLI Angular est necessaire pour pouvoir faire tourner le serveur de développement.
 Lancement
 
-Frontend => Démarrer ng serve pour avoir accès au serveur de développement. Rendez-vous sur http://localhost:8081/. Backend => Démarer node server ou nodemon server pour accéder à http://localhost:3000
+Frontend => Démarrer npm start pour avoir accès au serveur de développement. Rendez-vous sur http://localhost:8081/. Backend => Démarer node server ou nodemon server pour accéder à http://localhost:3000
 Création de compte
 
 Au lancement de l'application, il est possible de créer un compte pour s'y connecter les fois d'après. Le mot de passe doit contenir au minimum 8 caractères avec au moins 1 minuscule, 1 majuscule et 1 chiffre. Pas d'espace autorisé.
@@ -60,4 +63,4 @@ Au lancement de l'application, il est possible de créer un compte pour s'y conn
 * Installer Node JS : [Node JS] (https://nodejs.org/en/)
 * Executer la commande `npm install`
 * Démarrer le server: `node server` ou installer Nodemon `npm install -g nodemon` démarrer nodemon `nodemon server`
-* Clôner et démarrer le frontend : (https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6)
+* Clôner et démarrer le frontend : (https://github.com/PhilippeRavette/Web-Developer-P6-frontend)
