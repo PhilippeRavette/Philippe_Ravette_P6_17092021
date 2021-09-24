@@ -9,6 +9,8 @@ Compétences évaluées :
     Implémenter un modèle logique de données conformément à la réglementation
     Stocker des données de manière sécurisée
     Mettre en œuvre des opérations CRUD de manière sécurisée
+    
+* 👀  &nbsp; Voir : [Le projet sur OpenClassrooms](https://openclassrooms.com/fr/projects/676/assignment "Cliquez pour voir le projet")
 
   
 * Voir : [Le projet sur OpenClassrooms](https://openclassrooms.com/fr/projects/676/assignment "Cliquez pour voir le projet")
@@ -57,7 +59,7 @@ Au lancement de l'application, il est possible de créer un compte pour s'y conn
 
 
 
-## Installation ##
+##  🔨 &nbsp; Installation ##
 
 * Clôner le backend : commande `git clone` (https://github.com/PhilippeRavette/Philippe_Ravette_6_1709021)
 * Installer Node JS : [Node JS] (https://nodejs.org/en/)
