@@ -9,6 +9,8 @@ Compétences évaluées :
     Implémenter un modèle logique de données conformément à la réglementation
     Stocker des données de manière sécurisée
     Mettre en œuvre des opérations CRUD de manière sécurisée
+    
+* 👀  &nbsp; Voir : [Le projet sur OpenClassrooms](https://openclassrooms.com/fr/projects/676/assignment "Cliquez pour voir le projet")
 
 Développement
 
