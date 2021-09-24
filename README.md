@@ -56,7 +56,7 @@ Au lancement de l'application, il est possible de créer un compte pour s'y conn
 
 
 
-## Installation ##
+##  🔨 &nbsp; Installation ##
 
 * Clôner le backend : commande `git clone` (https://github.com/PhilippeRavette/Philippe_Ravette_6_1709021)
 * Installer Node JS : [Node JS] (https://nodejs.org/en/)
