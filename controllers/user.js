@@ -21,8 +21,6 @@ const emailMask2Options = {
     maskAtTheRate: false,
 };
 
-//Output: ********@**********
-
 //Enregistrement d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
 
